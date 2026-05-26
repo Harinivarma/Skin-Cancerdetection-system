@@ -1,0 +1,5 @@
+dataset/
+images/
+preprocessed_data/
+*.h5
+backend/target/

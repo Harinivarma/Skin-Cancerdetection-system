@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AI Skin Cancer Detection</title>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- LOGIN CHECK -->
+    <script>
+        if (localStorage.getItem("loggedIn") !== "true") {
+            alert("Please login first");
+            window.location.href = "login.html";
+        }
+    </script>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div id="navbar"></div>
+
+    <!-- MAIN CONTAINER -->
+    <div class="modern-container">
+
+        <div class="modern-card">
+
+            <h2 class="title"><i class="fa-solid fa-camera"></i> Upload / Take Picture</h2>
+
+            <!-- UPLOAD OPTIONS -->
+            <div class="upload-options">
+                <button id="openCameraBtn" class="secondary-btn">
+                    📷 Open Camera
+                </button>
+ <button id="flipCameraBtn" class="secondary-btn" style="display:none;">
+        🔄 Flip Camera
+    </button>
+
+                <button class="secondary-btn" onclick="document.getElementById('imageInput').click()">
+                    🖼 Upload Image
+                </button>
+				
+
+                <input type="file" id="imageInput" accept="image/*" style="display:none;">
+            </div>
+
+            <!-- CAMERA PREVIEW -->
+            <video id="cameraPreview" autoplay playsinline class="camera-box"></video>
+
+            <!-- CAPTURE BUTTON -->
+            <button id="captureBtn" class="primary-btn" style="display:none;">Capture Photo</button>
+
+            <!-- PREVIEW -->
+            <img id="previewImage" class="preview-img">
+
+            <!-- DETECT BUTTON -->
+            <button id="uploadBtn" class="primary-btn">Detect Disease</button>
+
+            <!-- RESULT SECTION -->
+            <div id="resultArea" class="result-card" style="display:none;">
+                <h3>Prediction Result</h3>
+
+                <p><b>Disease:</b> <span id="prediction"></span></p>
+                <p><b>Confidence:</b> <span id="confidence"></span></p>
+                <p><b>About:</b> <span id="diseaseInfo"></span></p>
+
+                <canvas id="confidenceChart"></canvas>
+            </div>
+
+            <hr>
+
+            <!-- HOSPITAL LIST -->
+            <h3>Nearby Hospitals</h3>
+            <div id="hospitalList"></div>
+
+        </div>
+
+    </div>
+
+    <!-- JS LOGIC -->
+    <script src="assets/js/app.js"></script>
+
+    <!-- NAVBAR LOADER -->
+    <script>
+        fetch("components/navbar.html")
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById("navbar").innerHTML = data;
+
+                const navLinks = document.getElementById("navLinks");
+                if (localStorage.getItem("loggedIn") === "true") {
+                    navLinks.innerHTML = `
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="upload.html">Upload</a></li>
+                        <li><a href="complete-profile.html">👤 Profile</a></li>
+                        <li><a href="#" onclick="logout()">Logout</a></li>
+                    `;
+                } else {
+                    navLinks.innerHTML = `
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="register.html">Register</a></li>
+                    `;
+                }
+            });
+
+        function logout() {
+            localStorage.clear();
+            window.location.href = "login.html";
+        }
+    </script>
+
+</body>
+</html>

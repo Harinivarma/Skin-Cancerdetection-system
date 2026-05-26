@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI-Based Skin Cancer Detection</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Prevent caching -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div id="navbar"></div>
+
+<!-- HERO SECTION (NO IMAGE) -->
+<section class="hero-section">
+    <div class="hero-container">
+
+        <div class="hero-text">
+            <h1>AI-Based Skin Cancer Detection</h1>
+            <p>
+                An intelligent medical system that detects skin cancer using
+                deep learning (CNN). Upload a skin lesion image and get
+                accurate predictions with confidence scores.
+            </p>
+
+            <a href="upload.html" class="hero-btn">Upload Skin Image</a>
+        </div>
+
+    </div>
+</section>
+
+<!-- FEATURES SECTION -->
+<section class="features">
+    <h2>System Features</h2>
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+            <img src="https://img.icons8.com/color/96/artificial-intelligence.png">
+            <h3>Deep Learning Model</h3>
+            <p>High-accuracy CNN trained on HAM10000 dataset.</p>
+        </div>
+
+        <div class="feature-card">
+            <img src="https://img.icons8.com/color/96/skin.png">
+            <h3>Skin Cancer Detection</h3>
+            <p>Detects Melanoma, BCC, AKIEC, Nevus & more.</p>
+        </div>
+
+        <div class="feature-card">
+            <img src="https://img.icons8.com/color/96/combo-chart.png">
+            <h3>Prediction Confidence</h3>
+            <p>Shows confidence graph for all 7 classes.</p>
+        </div>
+
+        <div class="feature-card">
+            <img src="https://img.icons8.com/color/96/hospital.png">
+            <h3>Hospital Recommendation</h3>
+            <p>Suggests nearby dermatology hospitals.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- AI WORKFLOW -->
+<section class="ai-flow">
+    <h2>Skin Cancer Detection Workflow</h2>
+
+    <img
+        src="https://miro.medium.com/v2/resize:fit:1200/1*X3yJk5JpK6fM3L1n7FZcWg.png"
+        alt="CNN Workflow"
+        class="flow-img"
+    >
+
+    <p class="flow-text">
+        Upload → Preprocess → CNN Model → Classification → Confidence Graph → Hospital Suggestion
+    </p>
+</section>
+
+<!-- LOAD NAVBAR -->
+<script>
+fetch("components/navbar.html")
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("navbar").innerHTML = data;
+
+    const navLinks = document.getElementById("navLinks");
+
+    if (localStorage.getItem("loggedIn") === "true") {
+      navLinks.innerHTML = `
+        <li><a href="index.html">Home</a></li>
+        <li><a href="upload.html">Upload</a></li>
+        <li><a href="complete-profile.html">👤 Profile</a></li>
+        <li><a href="#" onclick="logout()">Logout</a></li>
+      `;
+    } else {
+      navLinks.innerHTML = `
+        <li><a href="index.html">Home</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="register.html">Register</a></li>
+      `;
+    }
+  });
+
+function logout() {
+  localStorage.clear();
+  window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>

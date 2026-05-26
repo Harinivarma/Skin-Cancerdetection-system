@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<div id="navbar"></div>
+
+<!-- PAGE CENTER -->
+<div class="page-center">
+
+    <!-- REGISTER CARD -->
+    <div class="card" style="max-width:450px;">
+
+        <h2 style="text-align:center;">Create Account</h2>
+
+        <input type="text" id="name" placeholder="Full Name" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Password" required>
+
+        <button class="btn" onclick="register()">Register</button>
+
+        <p id="msg" style="text-align:center; margin-top:10px;"></p>
+
+        <p style="text-align:center; margin-top:15px;">
+            Already have an account?
+            <a href="login.html" style="color:#0d6efd; font-weight:bold;">
+                Login here
+            </a>
+        </p>
+
+    </div>
+</div>
+
+<script>
+function register() {
+
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+
+  if (!name || !email || !password) {
+    document.getElementById("msg").innerText = "Please fill all fields";
+    return;
+  }
+
+  fetch("http://localhost:9090/auth/register", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, email, password })
+  })
+  .then(res => res.json())
+  .then(() => {
+    alert("Registration successful! Please login.");
+    window.location.href = "login.html";
+  })
+  .catch(() => {
+    document.getElementById("msg").innerText = "Registration failed";
+  });
+}
+</script>
+
+<script>
+fetch("components/navbar.html")
+  .then(res => res.text())
+  .then(data => document.getElementById("navbar").innerHTML = data);
+</script>
+
+</body>
+</html>

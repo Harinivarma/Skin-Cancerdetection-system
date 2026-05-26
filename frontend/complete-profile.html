@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Complete Profile</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<div id="navbar"></div>
+
+<!-- PAGE CENTER -->
+<div class="page-center">
+
+    <!-- PROFILE CARD -->
+    <div class="card" style="max-width:500px;">
+
+        <h2 style="text-align:center;">Complete Your Profile</h2>
+
+        <input id="age" placeholder="Age">
+        <input id="phone" placeholder="Phone Number">
+        <input id="gender" placeholder="Gender">
+        <input id="city" placeholder="City">
+
+        <button class="btn" type="button" onclick="saveProfile()">
+            Save & Continue
+        </button>
+
+    </div>
+</div>
+
+<script>
+function saveProfile() {
+
+    const email = localStorage.getItem("userEmail");
+
+    if (!email) {
+        alert("Login first");
+        window.location.href = "login.html";
+        return;
+    }
+
+    fetch("http://localhost:9090/auth/profile", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            email: email,
+            age: document.getElementById("age").value,
+            gender: document.getElementById("gender").value,
+            city: document.getElementById("city").value,
+            phone: document.getElementById("phone").value
+        })
+    })
+    .then(res => {
+        if (!res.ok) throw new Error();
+        return res.json();
+    })
+    .then(() => {
+        // ✅ save city for hospitals
+        localStorage.setItem("userCity",
+            document.getElementById("city").value
+        );
+
+        alert("Profile saved successfully");
+        window.location.href = "upload.html";
+    })
+    .catch(() => {
+        alert("Error saving profile");
+    });
+}
+</script>
+
+<script>
+fetch("components/navbar.html")
+  .then(res => res.text())
+  .then(data => document.getElementById("navbar").innerHTML = data);
+</script>
+
+</body>
+</html>

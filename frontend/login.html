@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Login</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div id="navbar"></div>
+
+<!-- PAGE CENTER -->
+<div class="page-center">
+
+    <!-- CARD -->
+    <div class="card">
+
+        <h2>User Login</h2>
+
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Password" required>
+
+        <button class="btn" onclick="login()">Login</button>
+
+        <p id="msg" style="color:red; text-align:center; margin-top:10px;"></p>
+
+    </div>
+</div>
+
+<!-- LOGIN SCRIPT -->
+<script>
+function login() {
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    if (!email || !password) {
+        document.getElementById("msg").innerText = "Please fill all fields";
+        return;
+    }
+
+    fetch("http://localhost:9090/auth/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email, password })
+    })
+    .then(res => res.text())
+    .then(data => {
+        if (data === "LOGIN SUCCESS") {
+            localStorage.setItem("loggedIn", "true");
+            localStorage.setItem("userEmail", email);
+            window.location.href = "upload.html";
+        } else {
+            document.getElementById("msg").innerText = "Invalid email or password";
+        }
+    })
+    .catch(() => {
+        document.getElementById("msg").innerText = "Server error";
+    });
+}
+</script>
+
+<!-- LOAD NAVBAR -->
+<script>
+fetch("components/navbar.html")
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("navbar").innerHTML = data;
+
+    const navLinks = document.getElementById("navLinks");
+    navLinks.innerHTML = `
+        <li><a href="index.html">Home</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="register.html">Register</a></li>
+    `;
+  });
+
+function logout() {
+  localStorage.clear();
+  window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>

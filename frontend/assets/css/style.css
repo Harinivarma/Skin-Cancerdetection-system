@@ -1,0 +1,349 @@
+/* ===========================
+   GLOBAL STYLES
+=========================== */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: #eef2f7;
+    margin: 0;
+    padding: 0;
+}
+
+/* Fix unwanted large images */
+img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+
+/* ===========================
+   NAVBAR
+=========================== */
+.navbar {
+    background: #0d6efd;
+    padding: 14px 0;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.navbar .container {
+    width: 92%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#navLinks {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+#navLinks li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    transition: 0.2s;
+}
+#navLinks li a:hover {
+    opacity: 0.85;
+}
+
+
+/* ===========================
+   LOGIN / REGISTER
+=========================== */
+.page-center {
+    display: flex;
+    justify-content: center;
+    padding: 60px 10px;
+}
+
+.card {
+    background: white;
+    width: 100%;
+    max-width: 480px;
+    padding: 35px;
+    border-radius: 18px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+.card input {
+    width: 100%;
+    padding: 13px;
+    margin-top: 14px;
+    border-radius: 10px;
+    border: 1px solid #bfc7d1;
+    font-size: 15px;
+}
+
+.btn {
+    width: 100%;
+    padding: 14px;
+    background: #0d6efd;
+    color: white;
+    border: none;
+    margin-top: 22px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+.btn:hover { background: #0a58ca; }
+
+
+/* ===========================
+   UPLOAD PAGE
+=========================== */
+.modern-container {
+    display: flex;
+    justify-content: center;
+    padding: 50px 15px;
+}
+
+.modern-card {
+    background: white;
+    width: 100%;
+    max-width: 760px;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+}
+
+.title {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+.upload-box {
+    border: 2px dashed #0d6efd;
+    padding: 28px;
+    border-radius: 16px;
+    text-align: center;
+    background: #e8f0ff;
+    font-size: 16px;
+}
+
+.preview-img {
+    display: none;
+    width: 100%;
+    margin-top: 22px;
+    border-radius: 16px;
+    box-shadow: 0px 6px 18px rgba(0,0,0,0.14);
+}
+
+.primary-btn {
+    width: 100%;
+    background: #0d6efd;
+    color: white;
+    padding: 16px;
+    border: none;
+    margin-top: 22px;
+    border-radius: 14px;
+    cursor: pointer;
+    font-size: 19px;
+    font-weight: 600;
+    transition: 0.25s;
+}
+.primary-btn:hover {
+    background: #004ecb;
+}
+
+
+/* ===========================
+   RESULT CARD
+=========================== */
+.result-card {
+    background: #f1f5ff;
+    padding: 25px;
+    border-radius: 16px;
+    margin-top: 28px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.10);
+}
+
+
+/* ===========================
+   HOSPITAL CARDS
+=========================== */
+.hospital-card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 14px;
+    margin-top: 16px;
+    box-shadow: 0 5px 17px rgba(0,0,0,0.12);
+    border-left: 4px solid #0d6efd;
+    transition: 0.2s;
+}
+.hospital-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.15);
+}
+.phone {
+    color: #0d6efd;
+    font-weight: 600;
+}
+
+
+/* ===========================
+   HERO SECTION (HOME PAGE)
+=========================== */
+.hero-section {
+    background: #e0ebff;
+    padding: 90px 20px;
+    text-align: center;
+}
+
+.hero-text h1 {
+    font-size: 44px;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.hero-text p {
+    font-size: 18px;
+    color: #4b5563;
+    margin-top: 10px;
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-btn {
+    background: #0d6efd;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    margin-top: 18px;
+    display: inline-block;
+    transition: 0.25s;
+}
+.hero-btn:hover {
+    background: #004ecb;
+}
+
+
+/* ===========================
+   FEATURES SECTION (CENTER FIX)
+=========================== */
+.features {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.feature-grid {
+    display: flex;
+    justify-content: center;      /* ⭐ FIX: CENTER CARDS */
+    gap: 30px;
+    flex-wrap: wrap;              /* Responsive layout */
+    margin-top: 25px;
+}
+
+.feature-card {
+    width: 260px;
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+    text-align: center;
+}
+
+.feature-card img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 15px;
+}
+
+.feature-card h3 {
+    margin: 10px 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.feature-card p {
+    color: #555;
+    font-size: 15px;
+}
+
+
+/* ===========================
+   AI FLOW (WORKFLOW)
+=========================== */
+.ai-flow {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.ai-flow img {
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    margin: 20px 0;
+}
+
+.flow-text {
+    font-size: 18px;
+    color: #4b5563;
+    font-weight: 500;
+}
+/* CAMERA BUTTONS */
+.upload-options {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.secondary-btn {
+    padding: 12px 20px;
+    background: white;
+    border: 2px solid #0d6efd;
+    color: #0d6efd;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+.secondary-btn:hover {
+    background: #0d6efd;
+    color: white;
+}
+
+/* CAMERA VIEW */
+.camera-box {
+    width: 100%;
+    max-height: 350px;
+    border-radius: 16px;
+    display: none;
+    box-shadow: 0px 6px 18px rgba(0,0,0,0.14);
+    margin-top: 15px;
+}
+.upload-options {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.camera-box {
+    width: 100%;
+    max-height: 350px;
+    border-radius: 16px;
+    display: none;
+    box-shadow: 0px 6px 18px rgba(0,0,0,0.14);
+    margin-top: 15px;
+}
